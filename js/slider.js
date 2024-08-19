@@ -16,6 +16,27 @@ for(var i = 0 ; i < imgList.length; i++){
 }
 
 
+// Event listener for item caption clicks
+for (var i = 0; i < itemCaption.length; i++) {
+    itemCaption[i].addEventListener('click', function(eventInfo) {
+        // Get the parent element of the clicked caption
+        var parentElement = eventInfo.target.closest('.item');
+        
+        // Find the image within the parent element
+        var correspondingImg = parentElement.querySelector('img');
+
+        if (correspondingImg) {
+            lightboxcontainer.style.display = 'flex';
+            var imgSrc = correspondingImg.getAttribute('src');
+            lightboxcontainer.firstElementChild.style.backgroundImage = `url(${imgSrc})`;
+            currentSliderIndex = imgList.indexOf(correspondingImg);
+        }
+    });
+}
+
+
+
+
 closeBtn.addEventListener('click' , closeSlide)
 
 function closeSlide(){
